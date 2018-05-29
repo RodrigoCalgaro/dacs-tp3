@@ -1,0 +1,22 @@
+{
+  "name": "tp3",
+  "version": "1.0.0",
+  "description": "TP N° 3 - Uso de Node.js + framework de frontend - Materia: Desarrollo de aplicaciones cliente-servidor, UTN Frre.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Grupo 2",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0"
+  }
+}
