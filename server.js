@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var env = require('dotenv').load();
 
+var personas = require("./routes/personas");
 
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +22,9 @@ models.sequelize.sync({
     console.log(err, "Algo salió mal al actualizar la Base de Datos")
 });
  
+
+//Routes
+app.use("/personas", personas);
  
 app.get('/', function(req, res) {
  
