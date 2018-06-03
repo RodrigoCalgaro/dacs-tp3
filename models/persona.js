@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     direccion: DataTypes.STRING(40),
     localidad: DataTypes.STRING(40),
     email: DataTypes.STRING(30),
-    ocupacion: DataTypes.STRING(30),
     }, 
     {
     //Para que no se agreguen los timestamp attributes (updatedAt, createdAt)

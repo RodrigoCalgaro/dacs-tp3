@@ -6,68 +6,64 @@ var personaController = {};
 
 personaController.list = function (req, res) {
     var list = Persona.findAll().then(personas => {
-        res.send({personas: personas});        
+        res.json(personas);
+        return; 
     })
 }
 
 
 personaController.show = function(req, res) {
     Persona.find({ where: { idPersona: req.params.id } }).then(persona => {
-        res.send({persona: persona});
-        return persona
+        res.json(persona);
+        return;
     });
 };
 
 
-personaController.create = function (req, res) {
-    res.send("Falta Implementar");
-}
-
-
 personaController.save = function (req, res) {
     //Forming object from modal
-    var nuevaPersona = Persona.build({
-        nombre: req.body.nombrePersona,
-        apellido: req.body.apellidoPersona
-        //agregar los otros atributos
-    });
+    var nuevaPersona = Persona.build(req.body);
     //Inserting Data into database
     nuevaPersona.save().then(() => {
         console.log("Successfully created an persona.");
-        res.redirect("/personas/show/"+nuevaPersona.idPersona);
+        res.json('Guardado Correctamente');
+        return;
     })
     .catch(error => {
     console.log('Error in Inserting Record: ' + error);
-    
     })
-}
+};
 
 
 personaController.edit = function (req, res) {
     Persona.find({ where: { idPersona: req.params.id } }).then(persona => {    
-        res.send({persona: persona});
+        res.json(persona);
+        return;
     })    
-}
+};
 
 
 personaController.update = function(req, res) {
   Persona.findById(req.params.id).then(function (persona) {
-    persona.updateAttributes({
-        nombre: req.body.nombrePersona,
-        apellido: req.body.apellidoPersona
-    })
-    res.redirect("/personas/show/"+persona.idPersona);
+    persona.updateAttributes(req.body);
+    res.json("Actualizado Correctamente");
+    return;
     });
-}
+};
 
 
 personaController.delete = function (req, res) {
-    Persona.findById(req.params.id).then(function (persona) {
+    Persona.findById(req.params.id).then((persona) => {
         persona.destroy();
-        console.log("persona deleted!");
-        res.redirect("/personas");   
-    });
-}
+        console.log("Persona deleted!");
+        res.json("Borrado Correctamente");
+        return;
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json(err)
+    })
+};
 
 
 module.exports = personaController;

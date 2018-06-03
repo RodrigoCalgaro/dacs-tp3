@@ -10,19 +10,16 @@ router.get('/', persona.list);
 // Get single persona by id
 router.get('/show/:id', persona.show);
 
-// Create persona
-router.get('/create', persona.create);
-
 // Save persona
 router.post('/save', persona.save);
 
 // Edit persona
 router.get('/edit/:id', persona.edit);
 
-// Edit update
-router.post('/update/:id', persona.update);
+// Update persona
+router.put('/update/:id', persona.update);
 
 // Delete persona
-router.post('/delete/:id', persona.delete);
+router.delete('/delete/:id', persona.delete);
 
 module.exports = router;
