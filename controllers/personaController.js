@@ -6,7 +6,7 @@ var personaController = {};
 
 personaController.list = function (req, res) {
     var list = Persona.findAll().then(personas => {
-        res.json(personas);
+        res.status(200).json(personas);
         return; 
     })
 }
@@ -14,7 +14,7 @@ personaController.list = function (req, res) {
 
 personaController.show = function(req, res) {
     Persona.find({ where: { idPersona: req.params.id } }).then(persona => {
-        res.json(persona);
+        res.status(200).json(persona);
         return;
     });
 };
@@ -26,7 +26,7 @@ personaController.save = function (req, res) {
     //Inserting Data into database
     nuevaPersona.save().then(() => {
         console.log("Successfully created an persona.");
-        res.json('Guardado Correctamente');
+        res.status(200).json('Guardado Correctamente');
         return;
     })
     .catch(error => {
@@ -37,7 +37,7 @@ personaController.save = function (req, res) {
 
 personaController.edit = function (req, res) {
     Persona.find({ where: { idPersona: req.params.id } }).then(persona => {    
-        res.json(persona);
+        res.status(200).json(persona);
         return;
     })    
 };
@@ -46,7 +46,7 @@ personaController.edit = function (req, res) {
 personaController.update = function(req, res) {
   Persona.findById(req.params.id).then(function (persona) {
     persona.updateAttributes(req.body);
-    res.json("Actualizado Correctamente");
+    res.status(200).json("Actualizado Correctamente");
     return;
     });
 };
@@ -56,7 +56,7 @@ personaController.delete = function (req, res) {
     Persona.findById(req.params.id).then((persona) => {
         persona.destroy();
         console.log("Persona deleted!");
-        res.json("Borrado Correctamente");
+        res.status(200).json("Borrado Correctamente");
         return;
     })
     .catch((err) => {
